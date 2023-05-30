@@ -8,56 +8,56 @@ services:
     ports:
       - "8088:80"
     env_file:
-      - ../../.env-api
-      - ../../.env-ui
+      - ../../.env-api.sample
+      - ../../.env-ui.sample
 
   api:
     build:
       context: ../../
-      dockerfile: ${DOCKER_FILE}
+      dockerfile: Dockerfile
     ports:
       - "3001:3001"
     env_file:
-      - ../../.env-api
-      - ../../.env-issuer
+      - ../../.env-api.sample
+      - ../../.env-issuer.sample
     command: sh -c "sleep 4s && ./migrate && ./platform"
 
   api-ui:
     build:
       context: ../../
-      dockerfile: ${DOCKER_FILE}
+      dockerfile: Dockerfile
     ports:
       - "3002:3002"
     env_file:
-      - ../../.env-api
-      - ../../.env-issuer
+      - ../../.env-api.sample
+      - ../../.env-issuer.sample
     command: sh -c "sleep 4s && ./migrate && ./platform_ui"
 
   notifications:
     build:
       context: ../../
-      dockerfile: ${DOCKER_FILE}
+      dockerfile: Dockerfile
     env_file:
-      - ../../.env-api
-      - ../../.env-issuer
+      - ../../.env-api.sample
+      - ../../.env-issuer.sample
     command: sh -c "sleep 4s && ./notifications"
 
   pending_publisher:
     build:
       context: ../../
-      dockerfile: ${DOCKER_FILE}
+      dockerfile: Dockerfile
     env_file:
-      - ../../.env-api
-      - ../../.env-issuer
+      - ../../.env-api.sample
+      - ../../.env-issuer.sample
     command: sh -c "sleep 4s &&  ./pending_publisher"
 
   initializer:
     build:
       context: ../../
-      dockerfile: ${DOCKER_FILE}
+      dockerfile: Dockerfile
     env_file:
-      - ../../.env-api
-      - ../../.env-issuer
+      - ../../.env-api.sample
+      - ../../.env-issuer.sample
     command: sh -c "sleep 4s && ./migrate && ./issuer_initializer"
 
 networks:
